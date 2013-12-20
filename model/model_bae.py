@@ -21,9 +21,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy(session_options={"expire_on_commit": False})
 
 import common
-#from user import DBUser
-#from post import DBCategory
-#from stats import DBStats
 
 def bind_app(app):
     db.app = app
@@ -51,6 +48,7 @@ def create_default_settings(app):
     settings.id = 1
 
     from apis import User, Post, Category
+
     home = Category.default_category()
 
     owner = User.get_user_by_email(app.config["OwnerEmail"])
@@ -62,7 +60,7 @@ def create_default_settings(app):
     post = Post.get_by_id(1)
     if not post:
         Post.create_post(owner, home, title=common.Welcome_Title % title,
-            body=common.Welcome_Post % title)
+                         body=common.Welcome_Post % title)
 
     settings.inited = True
     settings.save()
@@ -80,6 +78,7 @@ def init_database(app):
             raise Exception("Database expired")
     except:
         from alembic import command
+
         command.upgrade(app.config["MIGRATE_CFG"], "head")
         settings = create_default_settings(app)
 
@@ -205,7 +204,7 @@ class ModelMixin(object):
         if hasattr(self, "stats"):
             _res["stats"] = self.stats.to_dict()
         res = dict([(k, getattr(self, k)) for k in self.__dict__.keys() if
-                     (not k.startswith("_") and k not in self.protect_attrs)])
+                    (not k.startswith("_") and k not in self.protect_attrs)])
         res.update(_res)
         return res
 
@@ -220,6 +219,7 @@ class ModelMixin(object):
         if hasattr(self, "stats"):
 
             from stats import DBStats
+
             dbstats = DBStats.get_by_id(self._stats_id)
             _remove(DBStats, self._stats_id)
             if dbstats:
@@ -262,6 +262,7 @@ class StatsMixin(object):
     def stats(self):
 
         from stats import DBStats
+
         dbstats = DBStats.get_by_id(self._stats_id)
         if not dbstats:
             dbstats = DBStats.create()
@@ -300,21 +301,25 @@ class DBSiteSettings(db.Model, ModelMixin):
     @property
     def categories(self):
         from post import DBCategory
+
         return DBCategory.get_all(order=DBCategory.sort)
 
     @property
     def UserRoles(self):
         from user import DBUser
+
         return DBUser.UserRoles
 
     @property
     def Templates(self):
         from post import DBCategory
+
         return DBCategory.Templates
 
     @property
     def Orders(self):
         from post import DBCategory
+
         return DBCategory.Orders
 
     @classmethod

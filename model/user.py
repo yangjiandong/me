@@ -1,12 +1,10 @@
 from datetime import datetime
 import hashlib
 
-from model_bae import ModelMixin, StatsMixin,db
+from model_bae import ModelMixin, StatsMixin, db
 import common
 from stats import DBStats
 
-
-#db = SQLAlchemy(session_options={"expire_on_commit": False})
 
 class DBUser(db.Model, ModelMixin, StatsMixin):
     __tablename__ = "db_user"
@@ -15,7 +13,7 @@ class DBUser(db.Model, ModelMixin, StatsMixin):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    protect_attrs = ["password", "posts",  "email"]
+    protect_attrs = ["password", "posts", "email"]
 
     email = db.Column(db.String(128), unique=True, index=True)
     password = db.Column(db.String(256))

@@ -6,7 +6,11 @@ me.blog
 
     1. 分离出model
     tag 2013.12.20.before.update.model
-    
+
+    2.
+    app.config["OwnerEmail"] = "deepgully@gmail.com"
+    app.config["DefaultPassword"] = "admin"
+
 2013.12.19
 -----------
 
