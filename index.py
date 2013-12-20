@@ -219,7 +219,7 @@ if RUNTIME_ENV in ("bae",):
     application = WSGIApplication(application)
 
 elif RUNTIME_ENV in ("local",):
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
 
 elif RUNTIME_ENV in ("gae", "gae_dev"):
     application = app

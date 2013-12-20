@@ -15,7 +15,6 @@
 
 import hashlib
 
-from settings import logging
 from google.appengine.ext import db
 from google.appengine.api import datastore
 

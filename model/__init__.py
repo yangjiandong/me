@@ -23,4 +23,11 @@ __all__ = [
 ]
 from common import *
 
+if RUNTIME_ENV in('local','bae'):
+    from user import DBUser
+    from post import DBPost,DBCategory,DBComment,DBPhoto
+    from stats import DBStats
+    from tag import DBTag
+
+
 exec("from model_%s import *" % RUNTIME_ENV.split("_")[0]) in locals()
