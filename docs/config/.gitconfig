@@ -1,0 +1,47 @@
+[user]
+	email = young.jiandong@gmail.com
+	name = yangjiandong
+[color]
+	diff = auto
+	status=auto
+	branch=auto
+	interactive = auto
+	ui = true
+[color "branch"]
+  current = green bold
+  local = green
+  remote = yellow
+[color "diff"]
+  meta = blue bold
+  frag = blue 
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = blue bold		
+[core]
+	quotepath = false
+	excludesfile = d:/home/.gitignore
+	filemode = false
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	last = log -1 HEAD
+	unstage = reset HEAD --
+	dh = diff HEAD
+  lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+  lgn = log --pretty=oneline --abbrev-commit --show-notes=*
+  rh = reset --soft HEAD^
+  ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  rlog = reflog show --pretty="%Cred%h%Creset %gd: %gs%n >> %Cblue%ci (%cr)%Creset: %s" 	
+  
+[commit]
+	template = d:/home/gitmessage.txt
+
+
+[push]
+	default = simple
+
