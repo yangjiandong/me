@@ -169,6 +169,7 @@ def _update(cls, objs):
 
 
 class ModelMixin(object):
+    # list
     protect_attrs = []
 
     @classmethod
