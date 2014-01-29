@@ -218,7 +218,7 @@ if RUNTIME_ENV in ("bae",):
     from bae.core.wsgi import WSGIApplication
     application = WSGIApplication(application)
 
-elif RUNTIME_ENV in ("local",):
+elif RUNTIME_ENV in ("local",):    
     app.run(host='0.0.0.0',debug=True)
 
 elif RUNTIME_ENV in ("gae", "gae_dev"):
